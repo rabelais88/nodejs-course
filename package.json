@@ -6,11 +6,13 @@
     "pug": "^2.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/node": "^7.2.2",
     "nodemon": "^1.18.10"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node"
+    "dev": "nodemon --exec babel-node",
+    "build": "babel $1 -o c-$1"
   }
 }

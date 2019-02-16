@@ -9,11 +9,10 @@ app.post('/message', (req, res) => {
   });
   req.on('end', () => {
     const parsedBody = Buffer.concat(body); // link all the chunks together as a full stream
-    console.log(parsedBody.toString()); // it is changed to readable text via node native feature
-    // since the render function is not fully asynchronous in express 4.x
-    // the message is separately displayed in console
+    const result = parsedBody.toString();
+    console.log(result); // it is changed to readable text via node native feature
+    res.render('response', { response: result });
   });
-  res.render('response', { response: 'message is successfully sent!'})
 })
 
 listen(port);
