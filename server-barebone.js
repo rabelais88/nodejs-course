@@ -1,5 +1,6 @@
+// `import` is not used because it is not natively supported in some node versions unless it's for mac or .mjs
 const express = require('express');
-import 'dotenv/config';
+require('dotenv').config();
 const port = process.env.MY_PORT;
 const app = express();
 const pug = require('pug');
@@ -13,7 +14,7 @@ const listen = (_port) => {
   app.listen(_port, () => console.log(`app listening on port ${_port}`));
 }
 
-export {
+module.exports = {
   express,
   port,
   app,

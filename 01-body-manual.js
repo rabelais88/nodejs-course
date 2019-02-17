@@ -1,7 +1,7 @@
 // this code tries to manually parse body signal via POST method
-import { app, port, express, listen } from './server-barebone';
+const { app, port, listen } = require('./server-barebone');
 
-app.post('/message', (req, res) => {
+app.post('/message', (req, res, next) => {
   const body = [];
   req.on('data', chunk => {
     console.log('received data chunk', chunk); // streamed buffers
@@ -13,6 +13,7 @@ app.post('/message', (req, res) => {
     console.log(result); // it is changed to readable text via node native feature
     res.render('response', { response: result });
   });
+  next();
 })
 
 listen(port);
