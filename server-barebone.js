@@ -2,12 +2,14 @@
 const express = require('express');
 require('dotenv').config();
 const port = process.env.MY_PORT;
+if (!port) throw Error('please create .env file, in accordance with .envsample');
 const app = express();
 const pug = require('pug');
 
 app.set('view engine', 'pug')
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
   res.render('index');
+  return next();
 });
 
 const listen = (_port) => {
